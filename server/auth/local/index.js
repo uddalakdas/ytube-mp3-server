@@ -7,7 +7,10 @@ var auth = require('../auth.service');
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
+  console.log("email = "+req.headers['email']);
+  console.log("password = "+req.headers['password']);	
   passport.authenticate('local', function (err, user, info) {
+  	console.log(user)
     var error = err || info;
     if (error) return res.status(401).json(error);
     if (!user) return res.status(404).json({message: 'Something went wrong, please try again.'});
